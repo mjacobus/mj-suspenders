@@ -3,7 +3,7 @@ require 'rails/generators/rails/app/app_generator'
 
 module Suspenders
   class AppGenerator < Rails::Generators::AppGenerator
-    class_option :database, :type => :string, :aliases => '-d', :default => 'postgresql',
+    class_option :database, :type => :string, :aliases => '-d', :default => 'mysql',
       :desc => "Preconfigure for selected database (options: #{DATABASES.join('/')})"
 
     class_option :skip_test_unit, :type => :boolean, :aliases => '-T', :default => true,
@@ -42,11 +42,6 @@ module Suspenders
 
     def setup_database
       say 'Setting up database'
-
-      if 'postgresql' == options[:database]
-        build :use_postgres_config_template
-      end
-
       build :create_database
     end
 
@@ -73,7 +68,6 @@ module Suspenders
 
     def setup_production_environment
       say 'Setting up the production environment'
-      build :configure_smtp
       build :enable_rack_deflater
     end
 
@@ -102,7 +96,6 @@ module Suspenders
 
     def configure_app
       say 'Configuring app'
-      build :configure_action_mailer
       build :configure_time_zone
       build :configure_time_formats
       build :configure_rack_timeout
@@ -110,7 +103,6 @@ module Suspenders
       build :fix_i18n_deprecation_warning
       build :setup_default_rake_task
       build :configure_unicorn
-      build :setup_foreman
     end
 
     def setup_stylesheets
@@ -150,7 +142,6 @@ module Suspenders
 
     def outro
       say 'Congratulations! You just pulled our suspenders.'
-      say "Remember to run 'rails generate airbrake' with your API key."
     end
 
     def run_bundle
