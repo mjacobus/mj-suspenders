@@ -31,5 +31,6 @@ rush to build something amazing; don't use it if you like missing deadlines.
   s.test_files = `git ls-files -- {test,spec,features}/*`.split("\n")
   s.version = Suspenders::VERSION
   s.add_development_dependency 'rspec'
+  s.add_development_dependency 'simplecov', '~> 0.7.1'
   s.add_development_dependency 'capybara'
 end
