@@ -1,13 +1,23 @@
-before_script:
-- cp .sample.env .env
-branches:
-  only:
-  - master
-cache: bundler
 language: ruby
+rvm:
+  - 1.9.3
+  - 2.0.0
+  - 2.1.0
+  - 2.1.1
+env:
+  - DB=sqlite
+  - DB=mysql
+  - DB=postgresql
+script:
+  - RAILS_ENV=test bundle exec rake db:migrate --trace
+  - bundle exec rake db:test:prepare
+  - bundle exec rspec spec/
+before_script:
+  - mysql -e 'create database <%= app_name %>_test'
+  - psql -c 'create database  <%= app_name %>_test' -U postgres
+branches:
+  only: master
 notifications:
-  campfire:
-    on_success: change
+  email:
+    on_failure: change
     on_failure: always
-    template: '%{repository_name} build #%{build_number} on %{branch} by %{author} finished: %{message}: %{build_url}'
-rvm: ruby-<%= ruby_version_with_patch_level %>

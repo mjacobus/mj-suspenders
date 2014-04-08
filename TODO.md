@@ -13,3 +13,4 @@
 - gossiper (optional)
 - kaminary (with foundation template)
 - table cloth (tbd)
+- configure layout to use foundation
