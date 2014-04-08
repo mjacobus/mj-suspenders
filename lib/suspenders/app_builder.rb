@@ -97,10 +97,6 @@ end
         ''
     end
 
-    def create_database
-      bundle_command 'exec rake db:create db:migrate'
-    end
-
     def replace_gemfile
       remove_file 'Gemfile'
       template 'Gemfile.erb', 'Gemfile'
