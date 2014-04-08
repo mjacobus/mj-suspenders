@@ -55,6 +55,7 @@ module Suspenders
       say 'Setting up the test environment'
       build :generate_rspec
       build :configure_rspec
+      build :generate_machinist
       build :use_spring_binstubs
       build :enable_database_cleaner
       build :configure_spec_support_features
@@ -93,6 +94,7 @@ module Suspenders
     def configure_app
       say 'Configuring app'
       build :configure_action_mailer
+      build :setup_smtp
       build :configure_time_zone
       build :configure_time_formats
       build :disable_xml_params
