@@ -2,15 +2,10 @@ source 'https://rubygems.org'
 
 ruby '<%= RUBY_VERSION %>'
 
-gem 'airbrake'
-gem 'bourbon'
 gem 'coffee-rails'
-gem 'delayed_job_active_record', '>= 4.0.0'
 gem 'email_validator'
-gem 'flutie'
 gem 'high_voltage'
 gem 'jquery-rails'
-gem 'neat'
 gem 'mysql2'
 gem 'rack-timeout'
 gem 'rails', '>= 4.0.3'
@@ -22,14 +17,13 @@ gem 'uglifier'
 gem 'unicorn'
 
 group :development do
-  gem 'foreman'
   gem 'spring'
   gem 'spring-commands-rspec'
 end
 
 group :development, :test do
   gem 'awesome_print'
-  gem 'dotenv-rails'
+  # gem 'dotenv-rails'
   gem 'pry-rails'
   gem 'rspec-rails', '>= 2.14'
 end
@@ -37,7 +31,7 @@ end
 group :test do
   gem 'capybara-webkit', '>= 1.0.0'
   gem 'database_cleaner'
-  gem 'launchy'
+  # gem 'launchy'
   gem 'shoulda-matchers'
   gem 'simplecov', require: false
   gem 'timecop'
@@ -45,5 +39,5 @@ group :test do
 end
 
 group :staging, :production do
-  gem 'newrelic_rpm', '>= 3.7.3'
+  # gem 'newrelic_rpm', '>= 3.7.3'
 end
