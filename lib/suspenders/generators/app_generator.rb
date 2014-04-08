@@ -98,6 +98,7 @@ module Suspenders
       build :configure_time_zone
       build :configure_time_formats
       build :disable_xml_params
+      build :set_i18n
       build :fix_i18n_deprecation_warning
       build :setup_default_rake_task
       build :configure_unicorn

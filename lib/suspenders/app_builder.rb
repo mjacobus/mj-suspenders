@@ -171,6 +171,18 @@ end
       inject_into_class 'config/application.rb', 'Application', config
     end
 
+    def set_i18n
+      copy_file 'devise.en.yml', 'config/locales/devise.en.yml'
+      copy_file 'devise.pt-BR.yml', 'config/locales/devise.pt-BR.yml'
+
+      config = <<-RUBY
+    config.i18n.default_locale = 'pt-BR'
+
+      RUBY
+
+      inject_into_class 'config/application.rb', 'Application', config
+    end
+
     def generate_rspec
       generate 'rspec:install'
     end
