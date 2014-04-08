@@ -84,6 +84,7 @@ module Suspenders
       build :create_shared_flashes
       build :create_shared_javascripts
       build :create_application_layout
+      build :generate_foundation
     end
 
     def setup_coffeescript

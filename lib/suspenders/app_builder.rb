@@ -48,6 +48,10 @@ module Suspenders
       generate 'machinist:install'
     end
 
+    def generate_foundation
+      generate 'foundation:install -f'
+    end
+
     def setup_smtp
       copy_file 'smtp.yml.erb', 'config/smtp.yml'
       copy_file 'smtp_initializer.rb', 'config/initializers/smtp_setup.rb'
