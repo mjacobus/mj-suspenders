@@ -28,6 +28,7 @@ module Suspenders
     def configure_generators
       config = <<-RUBY
     config.generators do |generate|
+      generate.decorator false
       generate.helper false
       generate.javascript_engine false
       generate.request_specs false
