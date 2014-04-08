@@ -36,7 +36,7 @@ module Suspenders
       generate.helper false
       generate.javascript_engine false
       generate.request_specs false
-      generate.routing_specs false
+      generate.routing_specs true
       generate.stylesheets false
       generate.test_framework :rspec
       generate.view_specs false
