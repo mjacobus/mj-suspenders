@@ -49,8 +49,6 @@ module Suspenders
       say 'Setting up the development environment'
       build :raise_on_delivery_errors
       build :raise_on_unpermitted_parameters
-      build :provide_setup_script
-      build :provide_dev_prime_task
       build :configure_generators
     end
 
@@ -96,6 +94,7 @@ module Suspenders
 
     def configure_app
       say 'Configuring app'
+      build :configure_action_mailer
       build :configure_time_zone
       build :configure_time_formats
       build :configure_rack_timeout
@@ -138,10 +137,6 @@ module Suspenders
 
     def remove_routes_comment_lines
       build :remove_routes_comment_lines
-    end
-
-    def outro
-      say 'Congratulations! You just pulled our suspenders.'
     end
 
     def run_bundle

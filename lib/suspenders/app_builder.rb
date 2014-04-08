@@ -232,6 +232,10 @@ end
       end
     end
 
+    def create_database
+      bundle_command 'exec rake db:create db:migrate'
+    end
+
     private
 
     def override_path_for_tests
