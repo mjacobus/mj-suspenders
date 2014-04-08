@@ -13,21 +13,19 @@ Gem::Specification.new do |s|
   s.date = Date.today.strftime('%Y-%m-%d')
 
   s.description = <<-HERE
-Suspenders is a base Rails project that you can upgrade. It is used by
-thoughtbot to get a jump start on a working app. Use Suspenders if you're in a
-rush to build something amazing; don't use it if you like missing deadlines.
+MJ-Suspenders is a base Rails project used by the author of this gem.
   HERE
 
-  s.email = 'support@thoughtbot.com'
-  s.executables = ['suspenders']
+  s.email = 'marcelo.jacobus@gmail.com'
+  s.executables = ['mj-suspenders']
   s.extra_rdoc_files = %w[README.md LICENSE]
   s.files = `git ls-files`.split("\n")
-  s.homepage = 'http://github.com/thoughtbot/suspenders'
+  s.homepage = 'http://github.com/mjacobus/mg-suspenders'
   s.license = 'MIT'
-  s.name = 'suspenders'
+  s.name = 'mj-suspenders'
   s.rdoc_options = ['--charset=UTF-8']
   s.require_paths = ['lib']
-  s.summary = "Generate a Rails app using thoughtbot's best practices."
+  s.summary = "Generate a Rails app using thoughtbot's best practices. Plus Marcelo Jacobus favorites"
   s.test_files = `git ls-files -- {test,spec,features}/*`.split("\n")
   s.version = Suspenders::VERSION
   s.add_development_dependency 'rspec'

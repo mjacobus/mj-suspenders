@@ -7,6 +7,6 @@ rvm:
 notifications:
   email:
     on_failure: change
-branches:
-  only:
-    - master
+# branches:
+#   only:
+#     - master
