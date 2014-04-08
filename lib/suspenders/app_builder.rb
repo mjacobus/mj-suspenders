@@ -25,11 +25,6 @@ module Suspenders
       )
     end
 
-    def provide_setup_script
-      copy_file 'bin_setup', 'bin/setup'
-      run 'chmod a+x bin/setup'
-    end
-
     def configure_generators
       config = <<-RUBY
     config.generators do |generate|
@@ -47,6 +42,7 @@ module Suspenders
       inject_into_class 'config/application.rb', 'Application', config
     end
 
+    #
     def configure_smtp
       copy_file 'smtp.rb', 'config/initializers/smtp.rb'
 
