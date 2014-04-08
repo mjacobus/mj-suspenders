@@ -14,3 +14,5 @@
 - kaminary (with foundation template)
 - table cloth (tbd)
 - configure layout to use foundation
+- default to portuguese
+- Add portuguese locales yml
