@@ -47,6 +47,11 @@ module Suspenders
       generate 'machinist:install'
     end
 
+    def setup_smtp
+      copy_file 'smtp.yml.erb', 'config/smtp.yml'
+      copy_file 'smtp_initializer.rb', 'config/initializers/smtp_setup.rb'
+    end
+
     def enable_rack_deflater
       config = <<-RUBY
 

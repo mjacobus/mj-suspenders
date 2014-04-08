@@ -95,6 +95,7 @@ module Suspenders
     def configure_app
       say 'Configuring app'
       build :configure_action_mailer
+      build :setup_smtp
       build :configure_time_zone
       build :configure_time_formats
       build :disable_xml_params
