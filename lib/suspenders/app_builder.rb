@@ -49,7 +49,7 @@ module Suspenders
     end
 
     def generate_foundation
-      generate 'foundation:install -f'
+      generate 'foundation:install -s'
     end
 
     def setup_smtp
