@@ -30,7 +30,6 @@ module Suspenders
       invoke :remove_routes_comment_lines
       invoke :setup_git
       invoke :setup_database
-      invoke :outro
     end
 
     def customize_gemfile

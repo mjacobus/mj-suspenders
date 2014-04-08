@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'rails', '4.0.3'
   s.add_development_dependency 'aruba', '~> 0.5.2'
   s.add_development_dependency 'cucumber', '~> 1.2'
-  s.authors = ['thoughtbot']
+  s.authors = ['thoughtbot', 'Marcelo Jacobus']
   s.date = Date.today.strftime('%Y-%m-%d')
 
   s.description = <<-HERE

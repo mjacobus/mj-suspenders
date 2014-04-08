@@ -1,3 +1,3 @@
 module Suspenders
-  VERSION = '1.9.0'
+  VERSION = '0.0.1'
 end
