@@ -3,8 +3,8 @@ require 'bundler/setup'
 require 'simplecov'
 
 SimpleCov.start do
-  filter 'bin'
-  filter 'spec'
+  add_filter 'bin'
+  add_filter 'spec'
 end
 
 Bundler.require(:default, :test)
