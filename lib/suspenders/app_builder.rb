@@ -35,11 +35,16 @@ module Suspenders
       generate.stylesheets false
       generate.test_framework :rspec
       generate.view_specs false
+      generate.fixture_replacement :machinist
     end
 
       RUBY
 
       inject_into_class 'config/application.rb', 'Application', config
+    end
+
+    def generate_machinist
+      generate 'machinist:install'
     end
 
     def enable_rack_deflater

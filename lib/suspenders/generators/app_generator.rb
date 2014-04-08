@@ -55,6 +55,7 @@ module Suspenders
       say 'Setting up the test environment'
       build :generate_rspec
       build :configure_rspec
+      build :generate_machinist
       build :use_spring_binstubs
       build :configure_background_jobs_for_rspec
       build :enable_database_cleaner
