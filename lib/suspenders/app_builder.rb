@@ -182,11 +182,6 @@ end
       copy_file 'unicorn.rb', 'config/unicorn.rb'
     end
 
-    def setup_foreman
-      copy_file 'sample.env', '.sample.env'
-      copy_file 'Procfile', 'Procfile'
-    end
-
     def setup_stylesheets
       remove_file 'app/assets/stylesheets/application.css'
       copy_file 'application.css.scss',
