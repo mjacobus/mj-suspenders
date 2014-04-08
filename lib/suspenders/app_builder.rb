@@ -110,11 +110,6 @@ end
       template 'ruby-version.erb', '.ruby-version'
     end
 
-    def setup_heroku_specific_gems
-      inject_into_file 'Gemfile', "\n\s\sgem 'rails_12factor'",
-        after: /group :staging, :production do/
-    end
-
     def enable_database_cleaner
       copy_file 'database_cleaner_rspec.rb', 'spec/support/database_cleaner.rb'
     end
@@ -207,35 +202,6 @@ end
 
     def init_git
       run 'git init'
-    end
-
-    def create_heroku_apps
-      path_addition = override_path_for_tests
-      run "#{path_addition} heroku create #{app_name}-production --remote=production"
-      run "#{path_addition} heroku create #{app_name}-staging --remote=staging"
-      run "#{path_addition} heroku config:add RACK_ENV=staging RAILS_ENV=staging --remote=staging"
-    end
-
-    def set_heroku_remotes
-      remotes = <<-RUBY
-
-# Set up staging and production git remotes
-git remote add staging git@heroku.com:#{app_name}-staging.git
-git remote add production git@heroku.com:#{app_name}-production.git
-      RUBY
-
-      append_file 'bin/setup', remotes
-    end
-
-    def set_heroku_rails_secrets
-      path_addition = override_path_for_tests
-      run "#{path_addition} heroku config:add SECRET_KEY_BASE=#{generate_secret} --remote=staging"
-      run "#{path_addition} heroku config:add SECRET_KEY_BASE=#{generate_secret} --remote=production"
-    end
-
-    def create_github_repo(repo_name)
-      path_addition = override_path_for_tests
-      run "#{path_addition} hub create #{repo_name}"
     end
 
     def copy_miscellaneous_files

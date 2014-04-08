@@ -6,12 +6,6 @@ module Suspenders
     class_option :database, :type => :string, :aliases => '-d', :default => 'postgresql',
       :desc => "Preconfigure for selected database (options: #{DATABASES.join('/')})"
 
-    class_option :heroku, :type => :boolean, :aliases => '-H', :default => false,
-      :desc => 'Create staging and production Heroku apps'
-
-    class_option :github, :type => :string, :aliases => '-G', :default => nil,
-      :desc => 'Create Github repository and add remote origin pointed to repo'
-
     class_option :skip_test_unit, :type => :boolean, :aliases => '-T', :default => true,
       :desc => 'Skip Test::Unit files'
 
@@ -36,18 +30,12 @@ module Suspenders
       invoke :remove_routes_comment_lines
       invoke :setup_git
       invoke :setup_database
-      invoke :create_heroku_apps
-      invoke :create_github_repo
       invoke :outro
     end
 
     def customize_gemfile
       build :replace_gemfile
       build :set_ruby_to_version_being_used
-
-      if options[:heroku]
-        build :setup_heroku_specific_gems
-      end
 
       bundle_command 'install'
     end
@@ -135,22 +123,6 @@ module Suspenders
         say 'Initializing git'
         invoke :setup_gitignore
         invoke :init_git
-      end
-    end
-
-    def create_heroku_apps
-      if options[:heroku]
-        say 'Creating Heroku apps'
-        build :create_heroku_apps
-        build :set_heroku_remotes
-        build :set_heroku_rails_secrets
-      end
-    end
-
-    def create_github_repo
-      if !options[:skip_git] && options[:github]
-        say 'Creating Github repo'
-        build :create_github_repo, options[:github]
       end
     end
 
