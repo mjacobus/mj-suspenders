@@ -3,6 +3,9 @@ SimpleCov.start 'rails'
 
 ENV['RAILS_ENV'] = 'test'
 
+# TODO remvoe when warning is fixed
+require 'minitest/autorun'
+
 require File.expand_path('../../config/environment', __FILE__)
 
 require 'rspec/rails'
