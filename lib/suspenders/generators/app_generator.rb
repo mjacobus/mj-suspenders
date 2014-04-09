@@ -49,6 +49,7 @@ module Suspenders
       build :raise_on_delivery_errors
       build :raise_on_unpermitted_parameters
       build :configure_generators
+      build :setup_development_secret_token
     end
 
     def setup_test_environment

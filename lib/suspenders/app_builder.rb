@@ -88,6 +88,19 @@ end
         :force => true
     end
 
+    def setup_development_secret_token
+      development_file = 'config/environments/development.rb'
+      token = SecureRandom.urlsafe_base64(64)
+
+      config = <<-RUBY
+
+  ENV['SECRET_KEY_BASE'] = "#{token}"
+
+      RUBY
+
+      inject_into_file(development_file, config, before: "\nend")
+    end
+
     def create_partials_directory
       empty_directory 'app/views/application'
     end
