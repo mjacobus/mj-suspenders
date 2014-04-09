@@ -110,13 +110,7 @@ end
     def generate_home_page
       copy_file 'home.html.erb', 'app/views/pages/home.html.erb'
       copy_file 'home_routing_spec.rb', 'spec/routing/home_routing_spec.rb'
-
-      route = <<-RUBY
-
-  root to: 'high_voltage/pages#show', id: 'home'
-      RUBY
-
-      inject_into_file('config/routes.rb', route, before: "\nend")
+      route "root to: 'high_voltage/pages#show', id: 'home'"
     end
 
     def create_partials_directory
