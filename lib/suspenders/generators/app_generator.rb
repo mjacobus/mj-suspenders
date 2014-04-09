@@ -29,8 +29,8 @@ module Suspenders
       invoke :customize_error_pages
       invoke :remove_routes_comment_lines
       invoke :setup_home_page
-      invoke :setup_git
       invoke :setup_database
+      invoke :setup_git
     end
 
     def customize_gemfile

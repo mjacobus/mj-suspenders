@@ -239,7 +239,9 @@ end
     end
 
     def init_git
-      run 'git init'
+      git :init
+      git add: '.'
+      git commit: '-m "initial commit"'
     end
 
     def copy_miscellaneous_files
