@@ -28,6 +28,7 @@ module Suspenders
       invoke :copy_miscellaneous_files
       invoke :customize_error_pages
       invoke :remove_routes_comment_lines
+      invoke :setup_home_page
       invoke :setup_git
       invoke :setup_database
     end
@@ -37,6 +38,11 @@ module Suspenders
       build :set_ruby_to_version_being_used
 
       bundle_command 'install'
+    end
+
+    def setup_home_page
+      say "Setting up home page"
+      build :generate_home_page
     end
 
     def setup_database
@@ -49,7 +55,6 @@ module Suspenders
       build :raise_on_delivery_errors
       build :raise_on_unpermitted_parameters
       build :configure_generators
-      build :setup_development_secret_token
     end
 
     def setup_test_environment

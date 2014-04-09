@@ -86,10 +86,15 @@ end
       template 'secret_token.rb',
         'config/initializers/secret_token.rb',
         :force => true
+
+      say "Gerating token for testing env"
+      generate_secret_token('test')
+
+      say "Gerating token for development env"
+      generate_secret_token('development')
     end
 
-    def setup_development_secret_token
-      development_file = 'config/environments/development.rb'
+    def generate_secret_token(env)
       token = SecureRandom.urlsafe_base64(64)
 
       config = <<-RUBY
@@ -98,7 +103,20 @@ end
 
       RUBY
 
-      inject_into_file(development_file, config, before: "\nend")
+      file = "config/environments/#{env}.rb"
+      inject_into_file(file, config, before: "\nend")
+    end
+
+    def generate_home_page
+      copy_file 'home.html.erb', 'app/views/pages/home.html.erb'
+      copy_file 'home_routing_spec.rb', 'spec/routing/home_routing_spec.rb'
+
+      route = <<-RUBY
+
+  root to: 'high_voltage/pages#show', id: 'home'
+      RUBY
+
+      inject_into_file('config/routes.rb', route, before: "\nend")
     end
 
     def create_partials_directory
