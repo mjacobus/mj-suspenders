@@ -262,8 +262,8 @@ end
 
     def remove_routes_comment_lines
       replace_in_file 'config/routes.rb',
-        /Application\.routes\.draw do.*end/m,
-        "Application.routes.draw do\nend"
+        /application\.routes\.draw do.*end/m,
+        "application.routes.draw do\nend"
     end
 
     def disable_xml_params

@@ -21,6 +21,7 @@ module Suspenders
       invoke :setup_production_environment
       invoke :setup_staging_environment
       invoke :setup_secret_token
+      invoke :setup_database
       invoke :create_suspenders_views
       invoke :setup_coffeescript
       invoke :configure_app
@@ -29,7 +30,6 @@ module Suspenders
       invoke :customize_error_pages
       invoke :remove_routes_comment_lines
       invoke :setup_home_page
-      invoke :setup_database
       invoke :setup_git
     end
 
@@ -107,7 +107,7 @@ module Suspenders
       build :disable_xml_params
       build :set_i18n
       build :fix_i18n_deprecation_warning
-      build :setup_default_rake_task
+      # build :setup_default_rake_task
       build :configure_unicorn
     end
 
