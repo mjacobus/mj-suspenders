@@ -97,14 +97,9 @@ end
     def generate_secret_token(env)
       token = SecureRandom.urlsafe_base64(64)
 
-      config = <<-RUBY
-
-  ENV['SECRET_KEY_BASE'] = "#{token}"
-
-      RUBY
-
-      file = "config/environments/#{env}.rb"
-      inject_into_file(file, config, before: "\nend")
+      application(nil, env: env) do
+        "ENV['SECRET_KEY_BASE'] = '#{token}'"
+      end
     end
 
     def generate_home_page
