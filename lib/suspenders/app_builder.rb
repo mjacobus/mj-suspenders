@@ -240,8 +240,8 @@ end
 
     def init_git
       git :init
-      git add: '.'
-      git commit: '-m "initial commit"'
+      # git add: '.'
+      # git commit: '-m "initial commit"'
     end
 
     def copy_miscellaneous_files
