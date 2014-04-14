@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    mj-suspenders (0.0.5)
+    mj-suspenders (0.0.6)
       bundler (~> 1.6)
       rails (= 4.1.0)
 
