@@ -225,7 +225,6 @@ end
       remove_file '.gitignore'
       copy_file 'suspenders_gitignore', '.gitignore'
       [
-        'app/views/pages',
         'spec/lib',
         'spec/controllers',
         'spec/helpers',
