@@ -47,6 +47,25 @@ module Suspenders
 
     def generate_devise
       generate 'devise:install'
+
+      config = <<CODE
+  if ENV['GITHUB_KEY']
+    config.omniauth :github, ENV['GITHUB_KEY'], ENV['FACEBOOK_SECRET'],
+      scope: 'email,public_repo'
+  end
+
+  if ENV['FACEBOOK_KEY']
+    config.omniauth :facebook, ENV['FACEBOOK_KEY'], ENV['FACEBOOK_SECRET'],
+      scope: 'email'
+  end
+
+  if ENV['GOOGLE_KEY']
+    config.omniauth :google_oauth2, ENV['GOOGLE_KEY'], ENV['GOOGLE_SECRET'],
+      scope: 'email', strategy_class: OmniAuth::Strategies::GoogleOAuth2
+  end
+CODE
+
+      inject_into_file 'config/initializer/devise.rb', config, before: "\nend"
     end
 
     def setup_user_auth
@@ -245,6 +264,7 @@ end
       copy_file 'devise.en.yml', 'config/locales/devise.en.yml', force: true
       copy_file 'devise.pt-BR.yml', 'config/locales/devise.pt-BR.yml'
       copy_file 'pt-BR.yml', 'config/locales/pt-BR.yml'
+      copy_file 'system.pt-BR.yml', 'config/locales/system.pt-BR.yml'
 
       config = <<-RUBY
     config.i18n.default_locale = 'pt-BR'
