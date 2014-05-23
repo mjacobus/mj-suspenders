@@ -214,30 +214,5 @@ pt-BR:
     attributes:
       user:
         username: Nome
-      order:
-        email: Email
-        phone: Telefone
-        address_street: Rua
-        address_number: Número
-        address_complement: Complemento
-        address_district: Bairro
-        address_city: Cidade
-        address_state: Estado
-        address: Endereço
-        status: Situação
-      store:
         name: Nome
-        slug: Url
-        city: Cidade
-        type: Tipo
-        address: Endereço
-        phone: Telefone
-        email: Email
-        state_id: Estado
-        category: Categoria
-        category_id: Categoria
-      payment_gateway_configuration:
-        name: Nome
-        enabled: Ativo?
-        email: Email
-        token: Token
+        provider: Provedor

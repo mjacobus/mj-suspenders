@@ -67,6 +67,7 @@ module Suspenders
       build :enable_database_cleaner
       build :configure_spec_support_features
       build :configure_travis
+      build :configure_coveralls
       build :configure_i18n_in_specs
     end
 

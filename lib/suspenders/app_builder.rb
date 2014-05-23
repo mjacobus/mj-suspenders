@@ -58,6 +58,8 @@ module Suspenders
         app/views/application/_login_links.html.erb
         app/controllers/omniauth_callbacks_controller.rb
         spec/controllers/omniauth_callbacks_controller_spec.rb
+        app/models/user.rb
+        spec/models/user_spec.rb
       ).each do |file|
         copy_file file, file, force: true
       end
@@ -199,6 +201,10 @@ end
       template 'travis.yml.erb', '.travis.yml'
     end
 
+    def configure_coveralls
+      template 'coveralls.yml', '.coveralls.yml'
+    end
+
     def configure_i18n_in_specs
       copy_file 'i18n.rb', 'spec/support/i18n.rb'
     end
@@ -236,8 +242,9 @@ end
     end
 
     def set_i18n
-      copy_file 'devise.en.yml', 'config/locales/devise.en.yml'
+      copy_file 'devise.en.yml', 'config/locales/devise.en.yml', force: true
       copy_file 'devise.pt-BR.yml', 'config/locales/devise.pt-BR.yml'
+      copy_file 'pt-BR.yml', 'config/locales/pt-BR.yml'
 
       config = <<-RUBY
     config.i18n.default_locale = 'pt-BR'
