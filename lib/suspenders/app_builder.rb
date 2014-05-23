@@ -4,6 +4,7 @@ module Suspenders
 
     def readme
       template 'README.md.erb', 'README.md'
+      template 'MIT-LICENSE.erb', 'MIT-LICENSE.md'
     end
 
     def raise_on_delivery_errors
@@ -42,6 +43,45 @@ module Suspenders
       RUBY
 
       inject_into_class 'config/application.rb', 'Application', config
+    end
+
+    def generate_devise
+      generate 'devise:install'
+    end
+
+    def setup_user_auth
+      %w(
+        db/migrate/20140522135601_devise_create_users.rb
+        db/migrate/20140522142949_add_name_to_users.rb
+        app/views/application/_login_button.html.erb
+        app/views/application/_login_status.html.erb
+        app/views/application/_login_links.html.erb
+        app/controllers/omniauth_callbacks_controller.rb
+        spec/controllers/omniauth_callbacks_controller_spec.rb
+      ).each do |file|
+        copy_file file, file, force: true
+      end
+
+      %w(
+        app/models/oauth
+        spec/models/oauth
+        spec/support
+      ).each do |dir|
+        directory dir
+      end
+
+      omniauth_routes = <<CODE
+
+  devise_for :users, controllers: {
+    omniauth_callbacks: "omniauth_callbacks"
+  }
+
+  devise_scope :user do
+    get 'sign_in', to: 'devise/sessions#new', as: :new_user_session
+    get 'sign_out', to: 'devise/sessions#destroy', as: :destroy_user_session
+  end
+CODE
+      route omniauth_routes
     end
 
     def generate_machinist

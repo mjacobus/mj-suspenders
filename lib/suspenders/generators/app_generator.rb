@@ -30,6 +30,7 @@ module Suspenders
       invoke :customize_error_pages
       invoke :remove_routes_comment_lines
       invoke :setup_home_page
+      invoke :setup_oauth
       invoke :setup_git
     end
 
@@ -67,6 +68,11 @@ module Suspenders
       build :configure_spec_support_features
       build :configure_travis
       build :configure_i18n_in_specs
+    end
+
+    def setup_oauth
+      build :generate_devise
+      build :setup_user_auth
     end
 
     def setup_production_environment
