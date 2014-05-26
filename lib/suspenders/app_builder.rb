@@ -65,7 +65,7 @@ module Suspenders
   end
 CODE
 
-      inject_into_file 'config/initializer/devise.rb', config, before: "\nend"
+      # inject_into_file 'config/initializer/devise.rb', config, before: "\nend"
     end
 
     def setup_user_auth
