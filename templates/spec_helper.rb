@@ -6,7 +6,7 @@ SimpleCov.start 'rails'
 
 ENV['RAILS_ENV'] = 'test'
 
-# TODO remvoe when warning is fixed
+# TODO remove when warning is fixed
 require 'minitest/autorun'
 
 require File.expand_path('../../config/environment', __FILE__)
@@ -29,7 +29,15 @@ RSpec.configure do |config|
   config.infer_base_class_for_anonymous_controllers = false
   config.order = 'random'
   config.use_transactional_fixtures = false
+
+  # config.include Formulaic::Dsl, type: :feature
+  config.include Features, type: :feature
+  config.include CapybaraHelper, type: :feature
+  config.include Devise::TestHelpers, type: :controller
+  config.include Records
 end
 
 # Capybara.javascript_driver = :webkit
 WebMock.disable_net_connect!(allow_localhost: true)
+
+

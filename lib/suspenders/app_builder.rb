@@ -49,6 +49,7 @@ module Suspenders
       generate 'devise:install'
 
       config = <<CODE
+
   if ENV['GITHUB_KEY']
     config.omniauth :github, ENV['GITHUB_KEY'], ENV['FACEBOOK_SECRET'],
       scope: 'email,public_repo'
@@ -65,7 +66,25 @@ module Suspenders
   end
 CODE
 
-      # inject_into_file 'config/initializer/devise.rb', config, before: "\nend"
+      inject_into_file 'config/initializers/devise.rb', config, before: "\nend"
+
+      create_oauth_config(:development)
+      create_oauth_config(:test)
+      create_oauth_config(:staging)
+      create_oauth_config(:production)
+    end
+
+    def create_oauth_config(env)
+      application(nil, env: env) do
+        <<CODE
+        ENV['FACEBOOK_KEY']    = 'fake'
+        ENV['FACEBOOK_SECRET'] = 'fake'
+        ENV['GOOGLE_KEY']      = 'fake'
+        ENV['GOOGLE_SECRET']   = 'fake'
+        ENV['GITHUB_KEY']      = 'fake'
+        ENV['GITHUB_SECRET']   = 'fake'
+CODE
+      end
     end
 
     def setup_user_auth
