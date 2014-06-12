@@ -51,8 +51,13 @@ module Suspenders
       config = <<CODE
 
   if ENV['GITHUB_KEY']
-    config.omniauth :github, ENV['GITHUB_KEY'], ENV['FACEBOOK_SECRET'],
+    config.omniauth :github, ENV['GITHUB_KEY'], ENV['GITHUB_SECRET'],
       scope: 'email,public_repo'
+  end
+
+  if ENV['TWITTER_KEY']
+    config.omniauth :twitter, ENV['TWITTER_KEY'], ENV['TWITTER_SECRET'],
+      scope: 'email'
   end
 
   if ENV['FACEBOOK_KEY']
